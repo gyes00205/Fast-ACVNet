@@ -1,7 +1,7 @@
 # from __future__ import print_function, division
 import argparse
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import torch
 import torch.nn as nn
 import torch.nn.parallel
@@ -13,7 +13,7 @@ import torchvision.utils as vutils
 import torch.nn.functional as F
 import numpy as np
 import time
-from tensorboardX import SummaryWriter
+from torch.utils.tensorboard import SummaryWriter
 from datasets import __datasets__
 from models import __models__, model_loss_train, model_loss_test
 from utils import *
@@ -27,7 +27,7 @@ parser = argparse.ArgumentParser(description='Accurate and Efficient Stereo Matc
 parser.add_argument('--model', default='Fast_ACVNet_plus', help='select a model structure', choices=__models__.keys())
 parser.add_argument('--maxdisp', type=int, default=192, help='maximum disparity')
 parser.add_argument('--dataset', default='sceneflow', help='dataset name', choices=__datasets__.keys())
-parser.add_argument('--datapath', default="/data/sceneflow/", help='data path')
+parser.add_argument('--datapath', default="/TOSHIBA_2TB_HDD/SceneFlowData/", help='data path')
 parser.add_argument('--trainlist', default='./filenames/sceneflow_train.txt', help='training list')
 parser.add_argument('--testlist',default='./filenames/sceneflow_test.txt', help='testing list')
 parser.add_argument('--lr', type=float, default=0.001, help='base learning rate')
